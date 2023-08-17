@@ -3,6 +3,7 @@ package com.practice.todolist.service;
 import org.springframework.http.ResponseEntity;
 
 import com.practice.todolist.dto.request.PatchTaskRequestDto;
+import com.practice.todolist.dto.request.PatchTaskStatusRequestDto;
 import com.practice.todolist.dto.request.PostTaskRequestDto;
 import com.practice.todolist.dto.response.GetFinishedTaskListResponseDto;
 import com.practice.todolist.dto.response.GetPassTaskListResponseDto;
@@ -20,16 +21,16 @@ public interface TaskService {
 
   public ResponseEntity<? super GetPassTaskListResponseDto> getPassTaskList();
 
-  public ResponseEntity<? super GetSearchTaskListResponseDto> getCategorySearchList();
+  public ResponseEntity<? super GetSearchTaskListResponseDto> getCategorySearchList(String category);
 
-  public ResponseEntity<? super GetSearchTaskListResponseDto> getTaskNameSearchList();
+  public ResponseEntity<? super GetSearchTaskListResponseDto> getTaskNameSearchList(String taskName);
 
-  public ResponseEntity<? super GetSearchTaskListResponseDto> getDateSearchList();
+  public ResponseEntity<? super GetSearchTaskListResponseDto> getDateSearchList(String date);
 
   public ResponseEntity<ResponseDto> patchTask(PatchTaskRequestDto dto);
 
   public ResponseEntity<ResponseDto> deleteTask(Integer number);
 
-  public ResponseEntity<ResponseDto> patchTaskStatus(Integer number);
+  public ResponseEntity<ResponseDto> patchTaskStatus(PatchTaskStatusRequestDto dto);
 
 }

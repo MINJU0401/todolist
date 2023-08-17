@@ -7,5 +7,7 @@ import com.practice.todolist.entity.CategoryEntity;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity, String> {
+
+  CategoryEntity findByCategory(String category);
   
 }
