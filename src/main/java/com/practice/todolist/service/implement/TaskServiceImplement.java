@@ -2,6 +2,7 @@ package com.practice.todolist.service.implement;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import com.practice.todolist.dto.response.GetSearchTaskListResponseDto;
 import com.practice.todolist.dto.response.GetUnfinishedTaskListResponseDto;
 import com.practice.todolist.dto.response.ResponseDto;
 import com.practice.todolist.entity.TaskEntity;
+import com.practice.todolist.entity.resultSet.TaskListResultSet;
 import com.practice.todolist.repository.CategoryRepository;
 import com.practice.todolist.repository.TaskRepository;
 import com.practice.todolist.service.TaskService;
@@ -67,20 +69,47 @@ public class TaskServiceImplement implements TaskService {
 
   @Override
   public ResponseEntity<? super GetUnfinishedTaskListResponseDto> getUnfinishedTaskList() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getUnfinishedTaskList'");
+    GetUnfinishedTaskListResponseDto body = null;
+
+    try {
+      List<TaskListResultSet> resultSet = taskRepository.getUnfinishedTaskList();
+      body = new GetUnfinishedTaskListResponseDto(resultSet);
+      return CustomResponse.success();
+
+    } catch(Exception exception) {
+      exception.printStackTrace();
+      return CustomResponse.databaseError();
+    }
   }
 
   @Override
   public ResponseEntity<? super GetFinishedTaskListResponseDto> getFinishedTaskList() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getFinishedTaskList'");
+    GetFinishedTaskListResponseDto body = null;
+
+    try {
+      List<TaskListResultSet> resultSet = taskRepository.getFinishedTaskList();
+      body = new GetFinishedTaskListResponseDto(resultSet);
+      return CustomResponse.success();
+
+    } catch(Exception exception) {
+      exception.printStackTrace();
+      return CustomResponse.databaseError();
+    }
   }
 
   @Override
   public ResponseEntity<? super GetPassTaskListResponseDto> getPassTaskList() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getPassTaskList'");
+    GetPassTaskListResponseDto body = null;
+
+    try {
+      List<TaskListResultSet> resultSet = taskRepository.getPassTaskList();
+      body = new GetPassTaskListResponseDto(resultSet);
+      return CustomResponse.success();
+
+    } catch(Exception exception) {
+      exception.printStackTrace();
+      return CustomResponse.databaseError();
+    }
   }
 
   @Override
