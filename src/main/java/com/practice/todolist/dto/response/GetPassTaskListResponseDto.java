@@ -31,13 +31,15 @@ public class GetPassTaskListResponseDto extends ResponseDto {
   @NoArgsConstructor
   @AllArgsConstructor
   class Tasks {
+    private Integer number;
     private String taskName;
     private String date;
     private String time;
     private String category;
-    private boolean status;
+    private Byte status;
 
   public Tasks(TaskListResultSet resultSet) {
+    this.number = resultSet.getNumber();
     this.taskName = resultSet.getTaskName();
     this.date = resultSet.getDate();
     this.time = resultSet.getTime();

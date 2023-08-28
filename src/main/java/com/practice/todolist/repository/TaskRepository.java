@@ -20,6 +20,7 @@ public interface TaskRepository extends JpaRepository<TaskEntity, Integer> {
   @Query(
     value=
     "SELECT " +
+    "T.number AS number, " +
     "T.task_name AS taskName, " +
     "T.date AS date, " +
     "T.time AS time, " +
@@ -33,6 +34,7 @@ public List<TaskListResultSet> getUnfinishedTaskList();
   @Query(
     value=
     "SELECT " +
+    "T.number AS number, " +
     "T.task_name AS taskName, " +
     "T.date AS date, " +
     "T.time AS time, " +
@@ -46,6 +48,7 @@ public List<TaskListResultSet> getFinishedTaskList();
 @Query(
   value=
   "SELECT " +
+  "T.number AS number, " +
   "T.task_name AS taskName, " +
   "T.date AS date, " +
   "T.time AS time, " +
@@ -53,11 +56,12 @@ public List<TaskListResultSet> getFinishedTaskList();
   "T.status AS status " +
   "FROM task T " +
   "WHERE T.date < CURRENT_DATE " + 
-  "ORDER BY T.date DESC ",
+  "ORDER BY T.date ASC ",
   nativeQuery = true)
 public List<TaskListResultSet> getPassTaskList();
 
 @Query(value = "SELECT " +
+"T.number AS number, " +
 "T.task_name AS taskName, " +
 "T.date AS date, " +
 "T.time AS time, " +
@@ -69,17 +73,19 @@ public List<TaskListResultSet> getPassTaskList();
 public List<TaskListResultSet> findByTaskContainsCategory(String category);
 
 @Query(value = "SELECT " +
+"T.number AS number, " +
 "T.task_name AS taskName, " +
 "T.date AS date, " +
 "T.time AS time, " +
 "T.category AS category, " +
 "T.status AS status " +
 "FROM task T " +
-"WHERE T.taskName = ? " +
+"WHERE T.task_name = ? " +
 "ORDER BY T.date DESC ", nativeQuery = true)
 public List<TaskListResultSet> findByTaskContainsTaskName(String taskName);
 
 @Query(value = "SELECT " +
+"T.number AS number, " +
 "T.task_name AS taskName, " +
 "T.date AS date, " +
 "T.time AS time, " +

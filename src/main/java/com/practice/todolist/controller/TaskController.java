@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.practice.todolist.dto.request.PatchTaskRequestDto;
@@ -62,27 +63,27 @@ public class TaskController {
       return response;
   }
 
-  @GetMapping("/search/{category}")
+  @GetMapping("/search/category")
   public ResponseEntity<? super GetSearchTaskListResponseDto> getCategorySearchList(
-    @PathVariable("category") String category
+    @RequestParam("category") String category
   ){
       ResponseEntity<? super GetSearchTaskListResponseDto> response = 
       taskService.getCategorySearchList(category);
       return response;
   }
 
-  @GetMapping("/search/{taskName}")
+  @GetMapping("/search/taskName")
   public ResponseEntity<? super GetSearchTaskListResponseDto> getTaskNameSearchList(
-    @PathVariable("taskName") String taskName
+    @RequestParam("taskName") String taskName
   ){
       ResponseEntity<? super GetSearchTaskListResponseDto> response = 
       taskService.getTaskNameSearchList(taskName);
       return response;
   }
   
-  @GetMapping("/search/{date}")
+  @GetMapping("/search/date")
   public ResponseEntity<? super GetSearchTaskListResponseDto> getDateSearchList(
-    @PathVariable("date") String date
+    @RequestParam("date") String date
   ){
       ResponseEntity<? super GetSearchTaskListResponseDto> response = 
       taskService.getDateSearchList(date);
