@@ -24,15 +24,14 @@ import com.practice.todolist.dto.response.GetUnfinishedTaskListResponseDto;
 import com.practice.todolist.dto.response.ResponseDto;
 import com.practice.todolist.service.TaskService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("")
+@RequiredArgsConstructor
 public class TaskController {
 
   private final TaskService taskService;
-
-  public TaskController(TaskService taskService) {
-      this.taskService = taskService;
-  }
   
   @PostMapping("")
   public ResponseEntity<ResponseDto> postTask(
@@ -63,27 +62,27 @@ public class TaskController {
       return response;
   }
 
-  @GetMapping("/search/category")
+  @GetMapping("/search/category/{category}")
   public ResponseEntity<? super GetSearchTaskListResponseDto> getCategorySearchList(
-    @RequestParam("category") String category
+    @PathVariable("category") String category
   ){
       ResponseEntity<? super GetSearchTaskListResponseDto> response = 
       taskService.getCategorySearchList(category);
       return response;
   }
 
-  @GetMapping("/search/taskName")
+  @GetMapping("/search/taskName/{taskName}")
   public ResponseEntity<? super GetSearchTaskListResponseDto> getTaskNameSearchList(
-    @RequestParam("taskName") String taskName
+    @PathVariable("taskName") String taskName
   ){
       ResponseEntity<? super GetSearchTaskListResponseDto> response = 
       taskService.getTaskNameSearchList(taskName);
       return response;
   }
   
-  @GetMapping("/search/date")
+  @GetMapping("/search/date/{date}")
   public ResponseEntity<? super GetSearchTaskListResponseDto> getDateSearchList(
-    @RequestParam("date") String date
+    @PathVariable("date") String date
   ){
       ResponseEntity<? super GetSearchTaskListResponseDto> response = 
       taskService.getDateSearchList(date);
