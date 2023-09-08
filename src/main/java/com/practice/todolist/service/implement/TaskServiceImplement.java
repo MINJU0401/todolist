@@ -254,7 +254,8 @@ public class TaskServiceImplement implements TaskService {
         return CustomResponse.notExistTaskNumber();
       }
 
-      taskEntity.setStatus(true);
+      boolean status = taskEntity.isStatus();
+      taskEntity.setStatus(!status);
       taskRepository.save(taskEntity);
 
       return CustomResponse.success();      

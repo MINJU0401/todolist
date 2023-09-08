@@ -55,7 +55,7 @@ public List<TaskListResultSet> getFinishedTaskList();
   "T.category AS category, " +
   "T.status AS status " +
   "FROM task T " +
-  "WHERE T.date < CURRENT_DATE " + 
+  "WHERE T.date < CURRENT_DATE AND T.status = false " + 
   "ORDER BY T.date ASC ",
   nativeQuery = true)
 public List<TaskListResultSet> getPassTaskList();
@@ -93,7 +93,7 @@ public List<TaskListResultSet> findByTaskContainsTaskName(String taskName);
 "T.status AS status " +
 "FROM task T " +
 "WHERE T.date = ? " +
-"ORDER BY T.date DESC ", nativeQuery = true)
+"ORDER BY T.time ASC ", nativeQuery = true)
 public List<TaskListResultSet> findByTaskContainsDate(String date);
 }
 
