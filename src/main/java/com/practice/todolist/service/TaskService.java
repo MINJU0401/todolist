@@ -8,12 +8,15 @@ import com.practice.todolist.dto.request.PostTaskRequestDto;
 import com.practice.todolist.dto.response.GetFinishedTaskListResponseDto;
 import com.practice.todolist.dto.response.GetPassTaskListResponseDto;
 import com.practice.todolist.dto.response.GetSearchTaskListResponseDto;
+import com.practice.todolist.dto.response.GetTaskResponseDto;
 import com.practice.todolist.dto.response.GetUnfinishedTaskListResponseDto;
 import com.practice.todolist.dto.response.ResponseDto;
 
 public interface TaskService {  
   
   public ResponseEntity<ResponseDto> postTask(PostTaskRequestDto dto);
+
+  public ResponseEntity<? super GetTaskResponseDto> getTask(Integer taskNumber);
 
   public ResponseEntity<? super GetUnfinishedTaskListResponseDto> getUnfinishedTaskList();
 

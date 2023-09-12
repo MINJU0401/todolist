@@ -20,6 +20,7 @@ import com.practice.todolist.dto.request.PostTaskRequestDto;
 import com.practice.todolist.dto.response.GetFinishedTaskListResponseDto;
 import com.practice.todolist.dto.response.GetPassTaskListResponseDto;
 import com.practice.todolist.dto.response.GetSearchTaskListResponseDto;
+import com.practice.todolist.dto.response.GetTaskResponseDto;
 import com.practice.todolist.dto.response.GetUnfinishedTaskListResponseDto;
 import com.practice.todolist.dto.response.ResponseDto;
 import com.practice.todolist.service.TaskService;
@@ -60,6 +61,14 @@ public class TaskController {
       ResponseEntity<? super GetPassTaskListResponseDto> response = 
       taskService.getPassTaskList();
       return response;
+  }
+
+  @GetMapping("/task/{taskNumber}")
+  public ResponseEntity<? super GetTaskResponseDto> getTask(
+    @PathVariable("taskNumber") Integer taskNumber
+  ) {
+    ResponseEntity<? super GetTaskResponseDto> response = taskService.getTask(taskNumber);
+    return response;
   }
 
   @GetMapping("/search/category/{category}")

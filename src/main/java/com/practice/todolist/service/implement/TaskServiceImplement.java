@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import com.practice.todolist.dto.request.PostTaskRequestDto;
 import com.practice.todolist.dto.response.GetFinishedTaskListResponseDto;
 import com.practice.todolist.dto.response.GetPassTaskListResponseDto;
 import com.practice.todolist.dto.response.GetSearchTaskListResponseDto;
+import com.practice.todolist.dto.response.GetTaskResponseDto;
 import com.practice.todolist.dto.response.GetUnfinishedTaskListResponseDto;
 import com.practice.todolist.dto.response.ResponseDto;
 import com.practice.todolist.entity.CategoryEntity;
@@ -264,6 +266,27 @@ public class TaskServiceImplement implements TaskService {
       exception.printStackTrace();
       return CustomResponse.databaseError();
     }
+  }
+
+  @Override
+  public ResponseEntity<? super GetTaskResponseDto> getTask(Integer taskNumber) {
+
+    GetTaskResponseDto result = null;
+
+    try {
+
+      TaskEntity taskEntity = taskRepository.findByNumber(taskNumber);
+      if (taskEntity == null) return CustomResponse.notExistTaskNumber();
+
+      result = new GetTaskResponseDto(taskEntity);
+
+    } catch(Exception exception) {
+      exception.printStackTrace();
+      return CustomResponse.databaseError();
+    }
+
+    return CustomResponse.success(result);
+
   }
   
 }
